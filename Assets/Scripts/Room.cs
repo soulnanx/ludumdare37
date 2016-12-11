@@ -12,6 +12,7 @@ public class Room : MonoBehaviour {
 
 
     private GameObject[] spots;
+    private GameObject GM;
 
     private int[,] espacos = new int[,]
         {
@@ -24,6 +25,7 @@ public class Room : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+        GM = GameObject.Find("GameController");
         for (int arrayNumber = 0; arrayNumber < 5; arrayNumber++)
         {
             for (int objId = 0; objId < 5; objId++)
