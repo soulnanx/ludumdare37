@@ -25,7 +25,7 @@ public class Room : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        for (int arrayNumber = 0; arrayNumber < 4; arrayNumber++) {
+       /* for (int arrayNumber = 0; arrayNumber < 4; arrayNumber++) {
             for (int objId = 0; objId < 5; objId++) {
                 if (espacos[arrayNumber, objId] != 0)
                 {
@@ -50,6 +50,7 @@ public class Room : MonoBehaviour {
                 }
             }
         }
+        */
     }
 
     void placeObject(int objectId, int horizontal, int vertical)
