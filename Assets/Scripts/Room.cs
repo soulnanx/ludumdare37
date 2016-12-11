@@ -10,6 +10,7 @@ public class Room : MonoBehaviour {
     public GameObject Arma2;
     public GameObject Arma3;
 
+
     private GameObject[] spots;
 
     private int[,] espacos = new int[,]

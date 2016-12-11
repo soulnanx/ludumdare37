@@ -7,10 +7,12 @@ public class WeaponSpot : MonoBehaviour {
     public Material onDefault;
     public GameObject chao;
 
+    private GameObject ghost1;
     private int horizontal;
     private int vertical;
 	// Use this for initialization
 	void Start () {
+        ghost1 = GameObject.Find("amoebadoraGhost");
 
 	}
 	
@@ -21,11 +23,13 @@ public class WeaponSpot : MonoBehaviour {
 
     private void OnMouseEnter()
     {
+        ghost1.transform.position = this.transform.position;
         GetComponent<Renderer>().material = mouseOver;
     }
 
     private void OnMouseExit()
     {
+        ghost1.transform.position = new Vector3(0, 0, 0);
         GetComponent<Renderer>().material = onDefault;
     }
 
