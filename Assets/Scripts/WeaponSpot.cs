@@ -29,7 +29,7 @@ public class WeaponSpot : MonoBehaviour {
 
     private void OnMouseExit()
     {
-        ghost1.transform.position = new Vector3(0, 0, 0);
+        ghost1.transform.position = new Vector3(-20, -20, -20);
         GetComponent<Renderer>().material = onDefault;
     }
 
