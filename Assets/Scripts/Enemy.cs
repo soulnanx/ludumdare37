@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        agent.destination = objetivo.transform.position;
+        agent.destination = new Vector3(objetivo.transform.position.x, objetivo.transform.position.y, objetivo.transform.position.z + 10);
     }
 
     private void OnTriggerEnter(Collider col)
