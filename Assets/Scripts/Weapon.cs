@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
+    private int[] id;
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -30,6 +30,12 @@ public class Weapon : MonoBehaviour {
             transform.GetChild(0).transform.LookAt(bestTarget.transform.position, transform.up);
         }
 
+    }
+
+
+    public void setId(int horizontal, int vertical)
+    {
+        this.id = new int[] { horizontal, vertical };
     }
 
 

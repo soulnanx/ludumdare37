@@ -47,25 +47,35 @@ public class Room : MonoBehaviour {
 
     public void placeObject(int objectId, int horizontal, int vertical)
     {
-        if(this.espacos[horizontal,vertical] == 0)
+        if (this.espacos[horizontal, vertical] == 0)
         {
             this.espacos[horizontal, vertical] = objectId;
-            switch (objectId) {
+            switch (objectId)
+            {
                 case 1:
-                    Instantiate(Arma1, new Vector3(this.transform.position.x + (5 * horizontal) - 10, this.transform.position.y + 0.6f,
+                    GameObject arma1 = Instantiate(Arma1, new Vector3(this.transform.position.x + (5 * horizontal) - 10, this.transform.position.y + 0.6f,
                                 this.transform.position.z + (5 * vertical) - 10), Quaternion.identity);
+                    arma1.GetComponent<Weapon>().setId(horizontal, vertical);
                     break;
                 case 2:
-                    Instantiate(Arma2, new Vector3(this.transform.position.x + (5 * horizontal) - 10, this.transform.position.y + 0.6f,
+                    GameObject arma2 = Instantiate(Arma2, new Vector3(this.transform.position.x + (5 * horizontal) - 10, this.transform.position.y + 0.6f,
                                 this.transform.position.z + (5 * vertical) - 10), Quaternion.identity);
+                    arma2.GetComponent<Weapon>().setId(horizontal, vertical);
                     break;
                 case 3:
-                    Instantiate(Arma3, new Vector3(this.transform.position.x + (5 * horizontal) - 10, this.transform.position.y + 0.6f,
+                    GameObject arma3 = Instantiate(Arma3, new Vector3(this.transform.position.x + (5 * horizontal) - 10, this.transform.position.y + 0.6f,
                                 this.transform.position.z + (5 * vertical) - 10), Quaternion.identity);
+                    arma3.GetComponent<Weapon>().setId(horizontal, vertical);
                     break;
                 default:
                     break;
             }
+        }
+        else {
+            if (GM.GetComponent<GameManager>().getWeapon() == 0) {
+               // removeObject()
+            }
+
         }
     }
 

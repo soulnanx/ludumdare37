@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour {
     private GameObject objetivo;
     public float speed;
 
+
 	// Use this for initialization
 	void Start () {
         objetivo = GameObject.FindGameObjectsWithTag("Bau")[0];
@@ -17,6 +18,7 @@ public class Enemy : MonoBehaviour {
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
         agent.destination = new Vector3(objetivo.transform.position.x, objetivo.transform.position.y, objetivo.transform.position.z + 10);
     }
+
 
     private void OnTriggerEnter(Collider col)
     {
