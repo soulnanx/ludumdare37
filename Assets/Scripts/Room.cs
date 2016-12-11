@@ -29,7 +29,7 @@ public class Room : MonoBehaviour {
             for (int objId = 0; objId < 5; objId++)
             {
                 GameObject spot = Instantiate(WeaponPlace,
-                    new Vector3(this.transform.position.x + (5 * arrayNumber) - 19, this.transform.position.y + 1,
+                    new Vector3(this.transform.position.x + (5 * arrayNumber) - 10, this.transform.position.y + 1,
                                 this.transform.position.z + (5 * objId) - 10), Quaternion.identity);
                 spot.GetComponent<WeaponSpot>().setId(arrayNumber, objId);
             }
@@ -50,15 +50,15 @@ public class Room : MonoBehaviour {
             this.espacos[horizontal, vertical] = objectId;
             switch (objectId) {
                 case 1:
-                    Instantiate(Arma1, new Vector3(this.transform.position.x + (5 * horizontal) - 19, this.transform.position.y + 1,
+                    Instantiate(Arma1, new Vector3(this.transform.position.x + (5 * horizontal) - 10, this.transform.position.y + 1,
                                 this.transform.position.z + (5 * vertical) - 10), Quaternion.identity);
                     break;
                 case 2:
-                    Instantiate(Arma2, new Vector3(this.transform.position.x + (5 * horizontal) - 19, this.transform.position.y + 1,
+                    Instantiate(Arma2, new Vector3(this.transform.position.x + (5 * horizontal) - 10, this.transform.position.y + 1,
                                 this.transform.position.z + (5 * vertical) - 10), Quaternion.identity);
                     break;
                 case 3:
-                    Instantiate(Arma3, new Vector3(this.transform.position.x + (5 * horizontal) - 19, this.transform.position.y + 1,
+                    Instantiate(Arma3, new Vector3(this.transform.position.x + (5 * horizontal) - 10, this.transform.position.y + 1,
                                 this.transform.position.z + (5 * vertical) - 10), Quaternion.identity);
                     break;
                 default:
