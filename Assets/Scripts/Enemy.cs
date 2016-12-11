@@ -25,10 +25,16 @@ public class Enemy : MonoBehaviour {
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider col)
     {
-        if (collision.gameObject.tag == "Bau") {
+        if (col.gameObject.tag == "Bau")
+        {
             Object.Destroy(this.gameObject);
         }
+        else
+        {
+            Physics.IgnoreCollision(col.GetComponent<Collider>(), GetComponent<Collider>());
+        }
     }
+
 }
