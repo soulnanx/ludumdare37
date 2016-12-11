@@ -13,8 +13,6 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(objetivo.transform.position);
-
         float step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, objetivo.transform.position, step);
         transform.LookAt(objetivo.transform.position, transform.up);
