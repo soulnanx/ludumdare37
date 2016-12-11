@@ -16,8 +16,10 @@ public class Enemy : MonoBehaviour {
         Debug.Log(objetivo.transform.position);
 
         float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, objetivo.transform.position, step);		
-	}
+        transform.position = Vector3.MoveTowards(transform.position, objetivo.transform.position, step);
+        transform.LookAt(objetivo.transform.position, transform.up);
+
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
