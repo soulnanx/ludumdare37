@@ -15,26 +15,22 @@ public class Room : MonoBehaviour {
 
     private int[,] espacos = new int[,]
         {
-            { 0,0,0,0,0,0,0},
-            { 0,0,0,0,0,0,0},
-            { 0,0,0,0,0,0,0},
-            { 0,0,0,0,0,0,0},
-            { 0,0,0,0,0,0,0},
-            { 0,0,0,0,0,0,0},
-            { 0,0,0,0,0,0,0},
-            { 0,0,0,0,0,0,0},
-            { 0,0,0,0,0,0,0}
+            { 0,0,0,0,0},
+            { 0,0,0,0,0},
+            { 0,0,0,0,0},
+            { 0,0,0,0,0},
+            { 0,0,0,0,0}
         };
 
     // Use this for initialization
     void Start() {
-        for (int arrayNumber = 0; arrayNumber < 9; arrayNumber++)
+        for (int arrayNumber = 0; arrayNumber < 5; arrayNumber++)
         {
-            for (int objId = 0; objId < 7; objId++)
+            for (int objId = 0; objId < 5; objId++)
             {
                 GameObject spot = Instantiate(WeaponPlace,
-                    new Vector3(this.transform.position.x + (5 * arrayNumber) - 20,this.transform.position.y + 1,
-                                this.transform.position.z + (5 * objId) - 17), Quaternion.identity);
+                    new Vector3(this.transform.position.x + (5 * arrayNumber) - 19, this.transform.position.y + 1,
+                                this.transform.position.z + (5 * objId) - 10), Quaternion.identity);
                 spot.GetComponent<WeaponSpot>().setId(arrayNumber, objId);
             }
         }
@@ -54,16 +50,16 @@ public class Room : MonoBehaviour {
             this.espacos[horizontal, vertical] = objectId;
             switch (objectId) {
                 case 1:
-                    Instantiate(Arma1, new Vector3(this.transform.position.x + (5 * horizontal) - 20, this.transform.position.y + 1,
-                                this.transform.position.z + (5 * vertical) - 17), Quaternion.identity);
+                    Instantiate(Arma1, new Vector3(this.transform.position.x + (5 * horizontal) - 19, this.transform.position.y + 1,
+                                this.transform.position.z + (5 * vertical) - 10), Quaternion.identity);
                     break;
                 case 2:
-                    Instantiate(Arma2, new Vector3(this.transform.position.x + (5 * horizontal) - 20, this.transform.position.y + 1,
-                                this.transform.position.z + (5 * vertical) - 17), Quaternion.identity);
+                    Instantiate(Arma2, new Vector3(this.transform.position.x + (5 * horizontal) - 19, this.transform.position.y + 1,
+                                this.transform.position.z + (5 * vertical) - 10), Quaternion.identity);
                     break;
                 case 3:
-                    Instantiate(Arma3, new Vector3(this.transform.position.x + (5 * horizontal) - 20, this.transform.position.y + 1,
-                                this.transform.position.z + (5 * vertical) - 17), Quaternion.identity);
+                    Instantiate(Arma3, new Vector3(this.transform.position.x + (5 * horizontal) - 19, this.transform.position.y + 1,
+                                this.transform.position.z + (5 * vertical) - 10), Quaternion.identity);
                     break;
                 default:
                     break;
