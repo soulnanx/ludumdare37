@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (GameObject.FindGameObjectsWithTag("Enemy").Length != 0 && this.turnActive) {
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && this.turnActive) {
             this.stopTurn();
         };
     }
@@ -36,9 +36,9 @@ public class GameManager : MonoBehaviour {
 
     public void nextTurn() {
         spawn.spawnEnemy();
-        this.turnActive = true;
         this.actualTurn++;
         room.hideSpots();
+        this.turnActive = true;
     }
 
     void stopTurn() {
