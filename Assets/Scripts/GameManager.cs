@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour {
 
     private int actualTurn;
     private bool turnActive;
-     
+
+    private int activeWeapon;
 
     public int turns;
     public int enemyPerTurn;
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour {
     void Start () {
         this.actualTurn = 0;
         this.turnActive = false;
+        this.activeWeapon = 2;
         //spawn.spawnEnemy();	
 	}
 	
@@ -52,6 +54,12 @@ public class GameManager : MonoBehaviour {
         room.showSpots();
     }
 
+    public void changeWeapon(int weapon) {
+        this.activeWeapon = weapon;
+    }
 
+    public int getWeapon() {
+        return this.activeWeapon;
+    }
 
 }

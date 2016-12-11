@@ -50,15 +50,15 @@ public class Room : MonoBehaviour {
             this.espacos[horizontal, vertical] = objectId;
             switch (objectId) {
                 case 1:
-                    Instantiate(Arma1, new Vector3(this.transform.position.x + (5 * horizontal) - 10, this.transform.position.y + 1,
+                    Instantiate(Arma1, new Vector3(this.transform.position.x + (5 * horizontal) - 10, this.transform.position.y + 0.6f,
                                 this.transform.position.z + (5 * vertical) - 10), Quaternion.identity);
                     break;
                 case 2:
-                    Instantiate(Arma2, new Vector3(this.transform.position.x + (5 * horizontal) - 10, this.transform.position.y + 1,
+                    Instantiate(Arma2, new Vector3(this.transform.position.x + (5 * horizontal) - 10, this.transform.position.y + 0.6f,
                                 this.transform.position.z + (5 * vertical) - 10), Quaternion.identity);
                     break;
                 case 3:
-                    Instantiate(Arma3, new Vector3(this.transform.position.x + (5 * horizontal) - 10, this.transform.position.y + 1,
+                    Instantiate(Arma3, new Vector3(this.transform.position.x + (5 * horizontal) - 10, this.transform.position.y + 0.6f,
                                 this.transform.position.z + (5 * vertical) - 10), Quaternion.identity);
                     break;
                 default:
