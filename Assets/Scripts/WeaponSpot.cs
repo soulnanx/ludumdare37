@@ -29,6 +29,8 @@ public class WeaponSpot : MonoBehaviour {
     private void OnMouseEnter()
     {
         switch (GM.GetComponent<GameManager>().getWeapon()) {
+            case 0:
+                break;
             case 1:
                 ghost1.transform.position = this.transform.position;
                 break;
