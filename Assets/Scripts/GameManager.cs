@@ -14,17 +14,19 @@ public class GameManager : MonoBehaviour {
     public int minInterval;
     public int maxInterval;
     public EnemySpawn spawn;
+    public Room room;
 
     // Use this for initialization
     void Start () {
         this.actualTurn = 0;
-        spawn.spawnEnemy();	
+        this.turnActive = false;
+        //spawn.spawnEnemy();	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (GameObject.FindWithTag("Enemy") == null) {
-            Debug.Log("No enemys founds");
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length != 0 && this.turnActive) {
+            this.stopTurn();
         };
     }
 
@@ -32,13 +34,16 @@ public class GameManager : MonoBehaviour {
         return this.actualTurn;
     }
 
-    void nextTurn() {
+    public void nextTurn() {
+        spawn.spawnEnemy();
         this.turnActive = true;
         this.actualTurn++;
+        room.hideSpots();
     }
 
     void stopTurn() {
         this.turnActive = false;
+        room.showSpots();
     }
 
 

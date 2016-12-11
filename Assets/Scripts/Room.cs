@@ -10,49 +10,35 @@ public class Room : MonoBehaviour {
     public GameObject Arma2;
     public GameObject Arma3;
 
-    private int[,] espacos;
+    private GameObject[] spots;
+
+    private int[,] espacos = new int[,]
+        {
+            { 0,0,0,0,0,0,0},
+            { 0,0,0,0,0,0,0},
+            { 0,0,0,0,0,0,0},
+            { 0,0,0,0,0,0,0},
+            { 0,0,0,0,0,0,0},
+            { 0,0,0,0,0,0,0},
+            { 0,0,0,0,0,0,0},
+            { 0,0,0,0,0,0,0},
+            { 0,0,0,0,0,0,0}
+        };
 
     // Use this for initialization
     void Start() {
-
-        espacos = new int[,]
-        { 
-            { 0,0,0,0,0},
-            { 0,0,0,0,0},
-            { 0,0,0,0,0},
-            { 0,0,0,0,0},
-            { 0,0,0,0,0}
-        };
-
-
-        for (int arrayNumber = 0; arrayNumber < 5; arrayNumber++)
+        for (int arrayNumber = 0; arrayNumber < 9; arrayNumber++)
         {
-            for (int objId = 0; objId < 5; objId++)
+            for (int objId = 0; objId < 7; objId++)
             {
-                switch (espacos[arrayNumber, objId])
-                {
-                    case 0:
-                        Debug.Log("Foi");
-                        Instantiate(WeaponPlace,
-                            new Vector3(this.transform.position.x + (5 * arrayNumber) - 20,this.transform.position.y,
-                                        this.transform.position.z + (5 * objId) - 20), Quaternion.identity);
-                        break;
-                    case 1:
-                        //Debug.Log("Arma 1 na linha : " + arrayNumber + " e pos: " + objId);
-                        break;
-                    case 2:
-                        //Debug.Log("Arma 2 na linha : " + arrayNumber + " e pos: " + objId);
-                        break;
-                    case 3:
-                        //Debug.Log("Arma 3 na linha : " + arrayNumber + " e pos: " + objId);
-                        break;
-                    default:
-                        //Debug.Log("Deu merda bixo");
-                        break;
-                }
+                GameObject spot = Instantiate(WeaponPlace,
+                    new Vector3(this.transform.position.x + (5 * arrayNumber) - 20,this.transform.position.y + 1,
+                                this.transform.position.z + (5 * objId) - 17), Quaternion.identity);
+                spot.GetComponent<WeaponSpot>().setId(arrayNumber, objId);
             }
         }
 
+        spots = GameObject.FindGameObjectsWithTag("Spot");
     }
 	
 	// Update is called once per frame
@@ -60,11 +46,27 @@ public class Room : MonoBehaviour {
 
     }
 
-    void placeObject(int objectId, int horizontal, int vertical)
+    public void placeObject(int objectId, int horizontal, int vertical)
     {
         if(this.espacos[horizontal,vertical] == 0)
         {
             this.espacos[horizontal, vertical] = objectId;
+            switch (objectId) {
+                case 1:
+                    Instantiate(Arma1, new Vector3(this.transform.position.x + (5 * horizontal) - 20, this.transform.position.y + 1,
+                                this.transform.position.z + (5 * vertical) - 17), Quaternion.identity);
+                    break;
+                case 2:
+                    Instantiate(Arma2, new Vector3(this.transform.position.x + (5 * horizontal) - 20, this.transform.position.y + 1,
+                                this.transform.position.z + (5 * vertical) - 17), Quaternion.identity);
+                    break;
+                case 3:
+                    Instantiate(Arma3, new Vector3(this.transform.position.x + (5 * horizontal) - 20, this.transform.position.y + 1,
+                                this.transform.position.z + (5 * vertical) - 17), Quaternion.identity);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -76,4 +78,19 @@ public class Room : MonoBehaviour {
         this.espacos[horizontal, vertical] = 0;
     }
 
+    public void hideSpots() {
+        
+
+        foreach (GameObject spot in spots) {
+            spot.SetActive(false);
+        }
+    }
+
+    public void showSpots()
+    {
+        foreach (GameObject spot in spots)
+        {
+            spot.SetActive(true);
+        }
+    }
 }

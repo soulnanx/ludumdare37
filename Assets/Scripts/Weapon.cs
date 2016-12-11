@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour {
-    private Enemy closestEnemy;
 
 	// Use this for initialization
 	void Start () {
@@ -26,9 +25,10 @@ public class Weapon : MonoBehaviour {
                 bestTarget = potentialTarget;
             }
         }
-
-        transform.LookAt(bestTarget.transform.position, transform.up);
-
+        if (closestEnemy.Length != 0)
+        {
+            transform.GetChild(0).transform.LookAt(bestTarget.transform.position, transform.up);
+        }
 
     }
 
