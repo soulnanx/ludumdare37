@@ -59,6 +59,9 @@ public class WeaponSpot : MonoBehaviour {
     {
         Debug.Log("horizontal: " + this.horizontal + " vertical: " + this.vertical);
         switch (GM.GetComponent<GameManager>().getWeapon()) {
+            case 0:
+                chao.GetComponent<Room>().placeObject(0, this.horizontal, this.vertical);
+                break;
             case 1:
                 chao.GetComponent<Room>().placeObject(1, this.horizontal, this.vertical);
                 break;

@@ -12,9 +12,9 @@ public class Room : MonoBehaviour {
 
 
     private GameObject[] spots;
-    private GameObject GM;
+    private static GameObject GM;
 
-    private int[,] espacos = new int[,]
+    private int[,] espacos = 
         {
             { 0,0,0,0,0},
             { 0,0,0,0,0},
@@ -71,19 +71,14 @@ public class Room : MonoBehaviour {
                     break;
             }
         }
-        else {
-            if (GM.GetComponent<GameManager>().getWeapon() == 0) {
-               // removeObject()
-            }
-
-        }
     }
 
     int getObjectId(int horizontal, int vertical) {
         return this.espacos[horizontal, vertical];
     }
 
-    void removeObject(int horizontal, int vertical) {
+    public void removeObject(int horizontal, int vertical) {
+        Debug.Log(this.espacos[horizontal, vertical]);
         this.espacos[horizontal, vertical] = 0;
     }
 
