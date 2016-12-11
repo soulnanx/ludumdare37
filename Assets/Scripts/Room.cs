@@ -20,11 +20,12 @@ public class Room : MonoBehaviour {
             { 0,0,0,0,0},
             { 0,0,0,0,0},
             { 0,0,0,0,0},
+            { 0,0,0,0,0},
             { 0,0,0,0,0}
         };
 
 
-        for (int arrayNumber = 0; arrayNumber < 4; arrayNumber++)
+        for (int arrayNumber = 0; arrayNumber < 5; arrayNumber++)
         {
             for (int objId = 0; objId < 5; objId++)
             {
@@ -33,8 +34,8 @@ public class Room : MonoBehaviour {
                     case 0:
                         Debug.Log("Foi");
                         Instantiate(WeaponPlace,
-                            new Vector3(this.transform.position.x + (arrayNumber),this.transform.position.y,
-                                        this.transform.position.z + ( objId)), Quaternion.identity);
+                            new Vector3(this.transform.position.x + (5 * arrayNumber) - 20,this.transform.position.y,
+                                        this.transform.position.z + (5 * objId) - 20), Quaternion.identity);
                         break;
                     case 1:
                         //Debug.Log("Arma 1 na linha : " + arrayNumber + " e pos: " + objId);
