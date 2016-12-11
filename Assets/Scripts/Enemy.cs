@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour {
     private GameObject objetivo;
     public float speed;
 
+    public int dano;
+    public int bounty;
 
 	// Use this for initialization
 	void Start () {

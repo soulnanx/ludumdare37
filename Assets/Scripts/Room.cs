@@ -55,13 +55,13 @@ public class Room : MonoBehaviour {
                     this.removeObject(horizontal, vertical);
                     break;
                 case 1:
-                    if (GM.GetComponent<GameManager>().blocksDinheiro >= 6)
+                    if (GM.GetComponent<GameManager>().blocksDinheiro >= 5)
                     {
                         GameObject arma1 = Instantiate(Arma1, new Vector3(this.transform.position.x + (5 * horizontal) - 10, this.transform.position.y + 0.6f,
                                     this.transform.position.z + (5 * vertical) - 10), Quaternion.identity);
                         arma1.GetComponent<Weapon>().setId(horizontal, vertical);
                         this.espacos[horizontal, vertical] = objectId;
-                        GM.GetComponent<GameManager>().blocksDinheiro -= 6;
+                        GM.GetComponent<GameManager>().blocksDinheiro -= 5;
                     }
                     break;
                 case 2:
