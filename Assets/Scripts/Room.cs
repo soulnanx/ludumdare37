@@ -49,18 +49,30 @@ public class Room : MonoBehaviour {
     {
         if (this.espacos[horizontal, vertical] == 0)
         {
-            this.espacos[horizontal, vertical] = objectId;
             switch (objectId)
             {
+                case 0:
+                    this.removeObject(horizontal, vertical);
+                    break;
                 case 1:
-                    GameObject arma1 = Instantiate(Arma1, new Vector3(this.transform.position.x + (5 * horizontal) - 10, this.transform.position.y + 0.6f,
-                                this.transform.position.z + (5 * vertical) - 10), Quaternion.identity);
-                    arma1.GetComponent<Weapon>().setId(horizontal, vertical);
+                    if (GM.GetComponent<GameManager>().blocksDinheiro >= 6)
+                    {
+                        GameObject arma1 = Instantiate(Arma1, new Vector3(this.transform.position.x + (5 * horizontal) - 10, this.transform.position.y + 0.6f,
+                                    this.transform.position.z + (5 * vertical) - 10), Quaternion.identity);
+                        arma1.GetComponent<Weapon>().setId(horizontal, vertical);
+                        this.espacos[horizontal, vertical] = objectId;
+                        GM.GetComponent<GameManager>().blocksDinheiro -= 6;
+                    }
                     break;
                 case 2:
-                    GameObject arma2 = Instantiate(Arma2, new Vector3(this.transform.position.x + (5 * horizontal) - 10, this.transform.position.y + 0.6f,
-                                this.transform.position.z + (5 * vertical) - 10), Quaternion.identity);
-                    arma2.GetComponent<Weapon>().setId(horizontal, vertical);
+                    if (GM.GetComponent<GameManager>().blocksDinheiro >= 3)
+                    {
+                        GameObject arma2 = Instantiate(Arma2, new Vector3(this.transform.position.x + (5 * horizontal) - 10, this.transform.position.y + 0.6f,
+                                    this.transform.position.z + (5 * vertical) - 10), Quaternion.identity);
+                        arma2.GetComponent<Weapon>().setId(horizontal, vertical);
+                        this.espacos[horizontal, vertical] = objectId;
+                        GM.GetComponent<GameManager>().blocksDinheiro -= 3;
+                    }
                     break;
                 case 3:
                     GameObject arma3 = Instantiate(Arma3, new Vector3(this.transform.position.x + (5 * horizontal) - 10, this.transform.position.y + 0.6f,
@@ -71,6 +83,11 @@ public class Room : MonoBehaviour {
                     break;
             }
         }
+        else {
+            if (objectId == 0) {
+                this.removeObject(horizontal, vertical);
+            }
+        }
     }
 
     int getObjectId(int horizontal, int vertical) {
@@ -78,7 +95,19 @@ public class Room : MonoBehaviour {
     }
 
     public void removeObject(int horizontal, int vertical) {
-        Debug.Log(this.espacos[horizontal, vertical]);
+        switch (this.espacos[horizontal, vertical]) {
+            case 1:
+                GM.GetComponent<GameManager>().blocksDinheiro += 3;
+                break;
+            case 2:
+                GM.GetComponent<GameManager>().blocksDinheiro += 1;
+                break;
+            case 3:
+                GM.GetComponent<GameManager>().blocksDinheiro += 0;
+                break;
+            default:
+                break;
+        }
         this.espacos[horizontal, vertical] = 0;
     }
 

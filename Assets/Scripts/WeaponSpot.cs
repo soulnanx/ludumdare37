@@ -61,6 +61,12 @@ public class WeaponSpot : MonoBehaviour {
         switch (GM.GetComponent<GameManager>().getWeapon()) {
             case 0:
                 chao.GetComponent<Room>().placeObject(0, this.horizontal, this.vertical);
+                GameObject[] weapons = GameObject.FindGameObjectsWithTag("Weapon");
+                foreach (GameObject weapon in weapons) {
+                    if (weapon.GetComponent<Weapon>().getId()[0] == this.horizontal && weapon.GetComponent<Weapon>().getId()[1] == this.vertical) {
+                        Object.Destroy(weapon.gameObject);
+                    }
+                }
                 break;
             case 1:
                 chao.GetComponent<Room>().placeObject(1, this.horizontal, this.vertical);

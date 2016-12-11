@@ -6,11 +6,10 @@ public class Weapon : MonoBehaviour {
     private int[] id;
 
     private GameObject GM;
-    private GameObject room;
+    public GameObject chao;
     // Use this for initialization
     void Start () {
         GM = GameObject.Find("GameController");
-        room = GameObject.Find("chao");
     }
 	
 	// Update is called once per frame
@@ -49,9 +48,8 @@ public class Weapon : MonoBehaviour {
     private void OnMouseUp()
     {
         GM = GameObject.Find("GameController");
-        room = GameObject.Find("chao");
         if (GM.GetComponent<GameManager>().getWeapon() == 0) {
-            room.GetComponent<Room>().removeObject(this.id[0], this.id[1]);
+            chao.GetComponent<Room>().placeObject(0,this.id[0], this.id[1]);
             Object.Destroy(this.gameObject);
         }
     }
