@@ -35,10 +35,16 @@ public class GameManager : MonoBehaviour {
     }
 
     public void nextTurn() {
-        spawn.spawnEnemy();
-        this.actualTurn++;
-        room.hideSpots();
-        this.turnActive = true;
+        if (spawn.spawnEnemy())
+        {
+            this.actualTurn++;
+            room.hideSpots();
+            this.turnActive = true;
+        }
+        else {
+            Debug.Log("Path is blocked");
+        }
+
     }
 
     void stopTurn() {

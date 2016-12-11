@@ -10,19 +10,12 @@ public class Enemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         objetivo = GameObject.FindGameObjectsWithTag("Bau")[0];
-
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //objetivo = GameObject.FindGameObjectsWithTag("Bau")[0];
-        float step = speed * Time.deltaTime;
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
         agent.destination = objetivo.transform.position;
-        //transform.rotation = Quaternion.LookRotation(dir);
-        //transform.position = Vector3.MoveTowards(transform.position, objetivo.transform.position, step);
-        //transform.LookAt(objetivo.transform.position, transform.up);
-
     }
 
     private void OnTriggerEnter(Collider col)
@@ -37,4 +30,19 @@ public class Enemy : MonoBehaviour {
         }
     }
 
+
+    public bool pathIsClear() {
+        objetivo = GameObject.FindGameObjectsWithTag("Bau")[0];
+        NavMeshPath path = new NavMeshPath();
+        GetComponent<NavMeshAgent>().CalculatePath(this.objetivo.transform.position, path);
+        Debug.Log(path.status);
+        if (path.status == NavMeshPathStatus.PathPartial)
+        {
+            Object.Destroy(this.gameObject);
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 }
