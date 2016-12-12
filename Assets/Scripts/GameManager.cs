@@ -125,7 +125,7 @@ public class GameManager : MonoBehaviour {
 
 
     public void nextTurn() {
-        if (spawn.canStart())
+        if (spawn.canStart() && !this.turnActive)
         {
             Debug.Log("chegou");
             Waves w = waveList[this.actualTurn];
