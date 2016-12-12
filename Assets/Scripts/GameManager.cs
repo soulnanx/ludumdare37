@@ -120,7 +120,6 @@ public class GameManager : MonoBehaviour {
         else {
             Debug.Log("Path is blocked");
         }
-
     }
 
     void stopTurn() {
