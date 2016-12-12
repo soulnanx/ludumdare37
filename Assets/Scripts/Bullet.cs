@@ -13,10 +13,14 @@ public class Bullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, target.position, step);
-
+        if (target != null)
+        {
+            float step = speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, target.position, step);
+        }
+        else {
+            Object.Destroy(this.gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider collision)
