@@ -1,0 +1,28 @@
+{
+	"waves":[
+		{
+			"type": ["soldier"],
+			"quantity": [1]
+		},
+		{
+			"type": ["soldier"],
+			"quantity": [3]
+		},
+		{
+			"type": ["soldier"],
+			"quantity": [6]
+		},
+		{
+			"type": ["soldier"],
+			"quantity": [10]
+		},
+		{
+			"type": ["doll"],
+			"quantity": [2]
+		},
+		{
+			"type": ["car"],
+			"quantity": [5]
+		}
+	]
+}

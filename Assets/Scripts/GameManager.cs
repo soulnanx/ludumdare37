@@ -21,10 +21,16 @@ public class GameManager : MonoBehaviour {
     public Room room;
 
     public Text waves;
+    public TextAsset jsonFile;
     public Text blocksText;
     public Text lifeText;
     public Waves[] waveList = new Waves[8];
 
+    [System.Serializable]
+    private class WaveList
+    {
+        public List<Waves> waves;
+    }
     // Use this for initialization
     void Start () {
         this.blocksDinheiro = 4;
@@ -34,30 +40,9 @@ public class GameManager : MonoBehaviour {
         this.activeWeapon = 2;
         //spawn.spawnEnemy();
 
-        waveList[0] = new Waves();
-        waveList[0].type = new string[] { "soldier" };
-        waveList[0].quantity = new int[] { 1 };
-
-        waveList[1] = new Waves();
-        waveList[1].type = new string[] { "soldier" };
-        waveList[1].quantity = new int[] { 3 };
-        
-        waveList[2] = new Waves();
-        waveList[2].type = new string[] { "soldier" };
-        waveList[2].quantity = new int[] { 6 };
-        
-        waveList[3] = new Waves();
-        waveList[3].type = new string[] { "soldier" };
-        waveList[3].quantity = new int[] { 10 };
-        
-        waveList[4] = new Waves();
-        waveList[4].type = new string[] { "doll" };
-        waveList[4].quantity = new int[] { 2 };
-        
-        waveList[5] = new Waves();
-        waveList[5].type = new string[] { "car" };
-        waveList[5].quantity = new int[] { 5 };
-        
+        WaveList wl = new WaveList();
+        JsonUtility.FromJsonOverwrite(jsonFile.text, wl);
+        waveList = wl.waves.ToArray();   
 
     }
 	
