@@ -18,30 +18,34 @@ public class EnemySpawn : MonoBehaviour {
 
 	}
 
-    public bool spawnEnemy() {
-        int enemy = (int) System.Math.Ceiling(Random.Range(0f, 3f));
+    public bool canStart() {
+        Enemy e1 = Instantiate(enemy1, this.transform.position, Quaternion.identity);
+        if (e1.pathIsClear()){
+            Object.Destroy(e1.gameObject);
+            return true;
+        } else {
+            Object.Destroy(e1.gameObject);
+            return false;
+        }
+
+    }
+
+    public void spawnEnemy(int enemy) {
         switch (enemy) {
             case 1:
                 Enemy e1 = Instantiate(enemy1, this.transform.position, Quaternion.identity);
-                if (e1.pathIsClear())
-                    return true;
                 break;
             case 2:
                 Enemy e2 = Instantiate(enemy2, this.transform.position, Quaternion.identity);
-                if (e2.pathIsClear())
-                    return true;
                 break;
             case 3:
                 Enemy e3 = Instantiate(enemy3, this.transform.position, Quaternion.identity);
-                if (e3.pathIsClear())
-                    return true;
                 break;
             default:
                 Debug.Log("Deu merda bixo");
-                return false;
+                break;
         }
-        Debug.Log(enemy);
-        return false;
-        
+        Debug.Log(enemy);        
+
     }
 }
