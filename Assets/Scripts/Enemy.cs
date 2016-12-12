@@ -6,16 +6,21 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour {
     private GameObject objetivo;
     private GameManager manager;
-    public float speed;
+    private float speed;
 
     public int dano;
     public int bounty;
     public int life;
 
+    public bool slow;
+    public int slowTime = 100;
 	// Use this for initialization
 	void Start () {
         manager = GameObject.Find("GameController").GetComponent<GameManager>();
         objetivo = GameObject.FindGameObjectsWithTag("Bau")[0];
+        NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        speed = agent.speed;
+
     }
 	
 	// Update is called once per frame
@@ -25,6 +30,16 @@ public class Enemy : MonoBehaviour {
         if (this.life <= 0) {
             manager.GetComponent<GameManager>().blocksDinheiro += this.bounty;
             Object.Destroy(this.gameObject);
+        }
+
+        if (this.slow && this.slowTime >= 0)
+        {
+            agent.speed = speed / 2;
+            this.slowTime--;
+        }
+        else if(!this.slow) {
+            agent.speed = speed;
+            this.slowTime = 100;
         }
 
     }
@@ -37,7 +52,7 @@ public class Enemy : MonoBehaviour {
             this.manager.vidas = this.manager.vidas - this.dano;
             Object.Destroy(this.gameObject);
         }
-        else
+        else 
         {
             Physics.IgnoreCollision(col.GetComponent<Collider>(), GetComponent<Collider>());
         }

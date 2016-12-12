@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
     public float speed;
+    public int damage;
+
 
     public Transform target;
 	// Use this for initialization
@@ -26,7 +28,11 @@ public class Bullet : MonoBehaviour {
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Enemy") {
-            collision.GetComponent<Enemy>().life--;
+            collision.GetComponent<Enemy>().life -= this.damage;
+            if (this.damage == 0)
+            {
+                collision.GetComponent<Enemy>().slow = true;
+            }
             Object.Destroy(this.gameObject);
         }
     }
