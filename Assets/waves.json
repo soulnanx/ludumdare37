@@ -23,6 +23,22 @@
 		{
 			"type": ["car"],
 			"quantity": [5]
+		},
+		{
+			"type": ["soldier", "doll"],
+			"quantity": [5, 2]
+		},
+		{
+			"type": ["car"],
+			"quantity": [5]
+		},
+		{
+			"type": ["soldier", "doll", "car"],
+			"quantity": [3, 2, 3]
+		},
+		{
+			"type": ["soldier", "doll", "car"],
+			"quantity": [5, 4, 5]
 		}
 	]
 }

@@ -26,11 +26,15 @@ public class GameManager : MonoBehaviour {
     public Text lifeText;
     public Waves[] waveList = new Waves[8];
 
+
     [System.Serializable]
     private class WaveList
     {
         public List<Waves> waves;
     }
+
+    private bool generating = false;
+
     // Use this for initialization
     void Start () {
         this.blocksDinheiro = 4;
@@ -40,9 +44,10 @@ public class GameManager : MonoBehaviour {
         this.activeWeapon = 2;
         //spawn.spawnEnemy();
 
+
         WaveList wl = new WaveList();
         JsonUtility.FromJsonOverwrite(jsonFile.text, wl);
-        waveList = wl.waves.ToArray();   
+        waveList = wl.waves.ToArray();
 
     }
 	
@@ -51,7 +56,7 @@ public class GameManager : MonoBehaviour {
         waves.text = "WAVE " + this.actualTurn;
         blocksText.text = ""+this.blocksDinheiro;
         lifeText.text = ""+this.vidas;
-        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && this.turnActive) {
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && (this.turnActive && !this.generating)) {
             this.stopTurn();
         };
     }
@@ -82,10 +87,12 @@ public class GameManager : MonoBehaviour {
         {
             for (int q = 0; q < quantity[index]; q++)
             {
+                generating = true;
                 Debug.Log("oi");
                 spawn.spawnEnemy(getEnemyType(types[index]));
                 yield return new WaitForSeconds(3f);
                 Debug.Log("Tchau");
+                generating = false;
             }
 
         }
@@ -93,7 +100,7 @@ public class GameManager : MonoBehaviour {
 
 
     public void nextTurn() {
-        if (spawn.canStart())
+        if (spawn.canStart() && !this.turnActive)
         {
             Debug.Log("chegou");
             Waves w = waveList[this.actualTurn];
@@ -105,7 +112,6 @@ public class GameManager : MonoBehaviour {
         else {
             Debug.Log("Path is blocked");
         }
-
     }
 
     void stopTurn() {
