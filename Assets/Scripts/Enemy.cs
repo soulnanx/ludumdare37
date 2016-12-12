@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour {
     private GameObject objetivo;
+    private GameManager manager;
     public float speed;
 
     public int dano;
@@ -12,6 +13,7 @@ public class Enemy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        manager = GameObject.Find("GameController").GetComponent<GameManager>();
         objetivo = GameObject.FindGameObjectsWithTag("Bau")[0];
     }
 	
@@ -26,6 +28,7 @@ public class Enemy : MonoBehaviour {
     {
         if (col.gameObject.tag == "Bau")
         {
+            this.manager.vidas = this.manager.vidas - this.dano;
             Object.Destroy(this.gameObject);
         }
         else
@@ -45,8 +48,7 @@ public class Enemy : MonoBehaviour {
             Object.Destroy(this.gameObject);
             return false;
         }
-        else {
-            return true;
-        }
+        return true;
+        
     }
 }
