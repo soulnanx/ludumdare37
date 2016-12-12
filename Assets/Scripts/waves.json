@@ -7,17 +7,17 @@
 		},
 		{
 			"type": ["soldier"],
-			"quantity": [3],
+			"quantity": [5],
 			"bounty": 3
 		},
 		{
 			"type": ["soldier"],
-			"quantity": [6],
+			"quantity": [10],
 			"bounty": 4
 		},
 		{
 			"type": ["soldier"],
-			"quantity": [10],
+			"quantity": [15],
 			"bounty": 5
 		},
 		{
@@ -27,7 +27,7 @@
 		},
 		{
 			"type": [ "doll","soldier"],
-			"quantity": [2, 5],
+			"quantity": [5, 10],
 			"bounty": 6
 		},
 		{
@@ -37,12 +37,12 @@
 		},
 		{
 			"type": ["doll", "soldier", "car"],
-			"quantity": [2,3,3],
+			"quantity": [5,10,10],
 			"bounty": 8
 		},
 		{
 			"type": ["doll", "soldier", "car"],
-			"quantity": [4, 5, 5],
+			"quantity": [7, 15, 10],
 			"bounty": 10
 		},
 		{
