@@ -24,42 +24,24 @@ public class EnemySpawn : MonoBehaviour {
             case 1:
                 Enemy e1 = Instantiate(enemy1, this.transform.position, Quaternion.identity);
                 if (e1.pathIsClear())
-                {
                     return true;
-                }
-                else {
-                    return false;
-                }
                 break;
             case 2:
                 Enemy e2 = Instantiate(enemy2, this.transform.position, Quaternion.identity);
                 if (e2.pathIsClear())
-                {
                     return true;
-                }
-                else
-                {
-                    return false;
-                }
                 break;
             case 3:
                 Enemy e3 = Instantiate(enemy3, this.transform.position, Quaternion.identity);
                 if (e3.pathIsClear())
-                {
                     return true;
-                }
-                else
-                {
-                    return false;
-                }
                 break;
             default:
                 Debug.Log("Deu merda bixo");
                 return false;
-                break;
         }
         Debug.Log(enemy);
+        return false;
+        
     }
-
-
 }
