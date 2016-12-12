@@ -33,10 +33,12 @@ public class GameManager : MonoBehaviour {
 
  
     public bool pause;
+    public bool doingtutorial = true;
 
     public GameObject gameOver;
     public GameObject gameWin;
     public GameObject gamePause;
+    public GameObject tutorial;
 
     [System.Serializable]
     private class WaveList
@@ -48,6 +50,8 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        room.hideSpots();
+        tutorial.SetActive(true);
         this.blocksDinheiro = 4;
         this.vidas = 20;
         this.actualTurn = 0;
@@ -81,6 +85,10 @@ public class GameManager : MonoBehaviour {
         }
         if (vidas <= 0) {
             gameOver.SetActive(true);
+            Time.timeScale = 0;
+        }
+        if (this.actualTurn > 10) {
+            gameWin.SetActive(true);
             Time.timeScale = 0;
         }
 
@@ -142,6 +150,11 @@ public class GameManager : MonoBehaviour {
             case "retry":
                 Time.timeScale = 1;
                 SceneManager.LoadScene("MainGame");
+                break;
+            case "closetutorial":
+                doingtutorial = false;
+                tutorial.SetActive(false);
+                room.showSpots();
                 break;
             default:
                 break;
