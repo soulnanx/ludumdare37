@@ -37,15 +37,21 @@ public class Weapon : MonoBehaviour {
                 bestTarget = potentialTarget;
             }
         }
-        if (closestEnemy.Length != 0)
-        {
-            transform.GetChild(0).transform.LookAt(bestTarget.transform.position, transform.up);
-        }
+
         if ((fire <= 0 && closestEnemy.Length != 0) && (bestTarget.transform.position - currentPosition).sqrMagnitude < this.range) {
             GameObject tiroGerado = Instantiate(tiro, new Vector3(this.transform.position.x , this.transform.position.y + 1,
                                     this.transform.position.z), Quaternion.identity);
             tiroGerado.GetComponent<Bullet>().target = bestTarget.transform;
             fire = fireRate;
+        }
+        if (closestEnemy.Length != 0 && (bestTarget.transform.position - currentPosition).sqrMagnitude < this.range)
+        {
+            var targetPos = bestTarget.transform.position;
+            targetPos.y = transform.position.y; //set targetPos y equal to mine, so I only look at my own plane
+            var targetDir = Quaternion.LookRotation(targetPos - transform.GetChild(0).position);
+            transform.GetChild(0).rotation = Quaternion.Slerp(transform.GetChild(0).rotation, targetDir, 5 * Time.deltaTime);
+
+            //transform.GetChild(0).transform.LookAt(bestTarget.transform.position, transform.up);
         }
         fire--;
 

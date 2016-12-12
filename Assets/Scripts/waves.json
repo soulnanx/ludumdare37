@@ -1,0 +1,54 @@
+{
+	"waves":[
+		{
+			"type": ["soldier"],
+			"quantity": [1],
+			"bounty": 2
+		},
+		{
+			"type": ["soldier"],
+			"quantity": [3],
+			"bounty": 3
+		},
+		{
+			"type": ["soldier"],
+			"quantity": [6],
+			"bounty": 4
+		},
+		{
+			"type": ["soldier"],
+			"quantity": [10],
+			"bounty": 5
+		},
+		{
+			"type": ["doll"],
+			"quantity": [2],
+			"bounty": 5
+		},
+		{
+			"type": [ "doll","soldier"],
+			"quantity": [2, 5],
+			"bounty": 6
+		},
+		{
+			"type": ["car"],
+			"quantity": [5],
+			"bounty": 3
+		},
+		{
+			"type": ["doll", "soldier", "car"],
+			"quantity": [2,3,3],
+			"bounty": 8
+		},
+		{
+			"type": ["doll", "soldier", "car"],
+			"quantity": [4, 5, 5],
+			"bounty": 10
+		},
+		{
+			"type": ["boss"],
+			"quantity": [1],
+			"bounty": 100
+		}
+	]
+}

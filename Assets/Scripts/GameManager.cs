@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour {
         blocksText.text = ""+this.blocksDinheiro;
         lifeText.text = ""+this.vidas;
         if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && (this.turnActive && !this.generating)) {
+            this.blocksDinheiro += waveList[this.actualTurn - 1].bounty;
             this.stopTurn();
         };
     }
@@ -75,6 +76,8 @@ public class GameManager : MonoBehaviour {
                 return 1;
             case "car":
                 return 2;
+            case "boss":
+                return 4;
             default:
                 Debug.Log("Deu merda bixo");
                 return 0;

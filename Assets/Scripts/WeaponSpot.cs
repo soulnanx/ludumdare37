@@ -18,6 +18,7 @@ public class WeaponSpot : MonoBehaviour {
 	void Start () {
         ghost1 = GameObject.Find("amoebadoraGhost");
         ghost2 = GameObject.Find("basicGhost");
+        ghost3 = GameObject.Find("basicGhost");
         GM = GameObject.Find("GameController");
     }
 	

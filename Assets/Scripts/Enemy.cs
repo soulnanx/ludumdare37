@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour {
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
         agent.destination = new Vector3(objetivo.transform.position.x, objetivo.transform.position.y, objetivo.transform.position.z + 10);
         if (this.life <= 0) {
-            manager.GetComponent<GameManager>().blocksDinheiro += this.bounty;
+            //manager.GetComponent<GameManager>().blocksDinheiro += this.bounty;
             Object.Destroy(this.gameObject);
         }
 

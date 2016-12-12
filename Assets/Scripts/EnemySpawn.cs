@@ -7,6 +7,7 @@ public class EnemySpawn : MonoBehaviour {
     public Enemy enemy1;
     public Enemy enemy2;
     public Enemy enemy3;
+    public Enemy enemy4;
 
     // Use this for initialization
     void Start () {
@@ -40,6 +41,9 @@ public class EnemySpawn : MonoBehaviour {
                 break;
             case 3:
                 Enemy e3 = Instantiate(enemy3, this.transform.position, Quaternion.identity);
+                break;
+            case 4:
+                Enemy e4 = Instantiate(enemy4, this.transform.position, Quaternion.identity);
                 break;
             default:
                 Debug.Log("Deu merda bixo");

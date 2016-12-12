@@ -95,18 +95,26 @@ public class Room : MonoBehaviour {
     }
 
     public void removeObject(int horizontal, int vertical) {
-        switch (this.espacos[horizontal, vertical]) {
-            case 1:
-                GM.GetComponent<GameManager>().blocksDinheiro += 3;
-                break;
-            case 2:
-                GM.GetComponent<GameManager>().blocksDinheiro += 1;
-                break;
-            case 3:
-                GM.GetComponent<GameManager>().blocksDinheiro += 0;
-                break;
-            default:
-                break;
+        if (GameObject.FindGameObjectsWithTag("Weapon").Length == 1 && GM.GetComponent<GameManager>().blocksDinheiro < 3)
+        {
+            GM.GetComponent<GameManager>().blocksDinheiro = 3;
+        }
+        else
+        {
+            switch (this.espacos[horizontal, vertical])
+            {
+                case 1:
+                    GM.GetComponent<GameManager>().blocksDinheiro += 3;
+                    break;
+                case 2:
+                    GM.GetComponent<GameManager>().blocksDinheiro += 1;
+                    break;
+                case 3:
+                    GM.GetComponent<GameManager>().blocksDinheiro += 0;
+                    break;
+                default:
+                    break;
+            }
         }
         this.espacos[horizontal, vertical] = 0;
     }

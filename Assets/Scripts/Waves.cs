@@ -7,4 +7,5 @@ public class Waves {
 
     public  string[] type;
     public  int[] quantity;
+    public int bounty;
 }
