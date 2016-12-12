@@ -6,9 +6,19 @@ using UnityEngine.SceneManagement;
 public class BGMusic : MonoBehaviour {
 
     static bool AudioBegin = false;
-    
+    private static BGMusic instance = null;
+
+    public static BGMusic Instance {
+           get { return instance; }
+    }
     void Awake()
     {
+        if (instance != null && instance != this) {
+            Destroy(this.gameObject);
+            return;
+        } else {
+            instance = this;
+        }
         if (!AudioBegin)
         {
             GetComponent<AudioSource>().Play();
