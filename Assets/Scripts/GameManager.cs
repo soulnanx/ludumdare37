@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour {
         waves.text = "WAVE " + this.actualTurn;
         blocksText.text = ""+this.blocksDinheiro;
         lifeText.text = ""+this.vidas;
-        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && (this.turnActive && !this.generating)) {
+        if ((vidas > 0  && GameObject.FindGameObjectsWithTag("Enemy").Length == 0) && (this.turnActive && !this.generating)) {
             this.blocksDinheiro += waveList[this.actualTurn - 1].bounty;
             this.stopTurn();
         };
