@@ -34,7 +34,6 @@ public class MenuManager : MonoBehaviour {
             default:
                 break;            
         }
-
     }
 
 }
