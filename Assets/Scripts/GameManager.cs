@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
+    public GameObject playPause;
+
+    public Sprite pauseImage;
+    public Sprite playImage;
 
 
     private int actualTurn;
@@ -27,7 +31,12 @@ public class GameManager : MonoBehaviour {
     public Text lifeText;
     public Waves[] waveList = new Waves[8];
 
+ 
+    public bool pause;
+
     public GameObject gameOver;
+    public GameObject gameWin;
+    public GameObject gamePause;
 
     [System.Serializable]
     private class WaveList
@@ -44,6 +53,7 @@ public class GameManager : MonoBehaviour {
         this.actualTurn = 0;
         this.turnActive = false;
         this.activeWeapon = 2;
+        Time.timeScale = 1;
         //spawn.spawnEnemy();
 
 
@@ -62,10 +72,26 @@ public class GameManager : MonoBehaviour {
             this.blocksDinheiro += waveList[this.actualTurn - 1].bounty;
             this.stopTurn();
         };
-
+        if (this.turnActive && !this.pause)
+        {
+            playPause.GetComponent<Image>().sprite = pauseImage;
+        }
+        else {
+            playPause.GetComponent<Image>().sprite = playImage;
+        }
         if (vidas <= 0) {
             gameOver.SetActive(true);
             Time.timeScale = 0;
+        }
+
+        if (pause)
+        {
+            Time.timeScale = 0;
+            if (Input.GetKey("escape"))
+                Application.Quit();
+        }
+        else if(vidas > 0) {
+            Time.timeScale = 1;
         }
     }
 
@@ -114,6 +140,7 @@ public class GameManager : MonoBehaviour {
                 Application.Quit();
                 break;
             case "retry":
+                Time.timeScale = 1;
                 SceneManager.LoadScene("MainGame");
                 break;
             default:
@@ -123,6 +150,7 @@ public class GameManager : MonoBehaviour {
 
 
     public void nextTurn() {
+
         if (spawn.canStart() && !this.turnActive)
         {
             Debug.Log("chegou");
@@ -131,10 +159,24 @@ public class GameManager : MonoBehaviour {
             this.actualTurn++;
             room.hideSpots();
             this.turnActive = true;
+            this.pause = false;
         }
-        else {
-            Debug.Log("Path is blocked");
+        else if (this.turnActive && !this.pause)
+        {
+            gamePause.SetActive(true);
+            playPause.GetComponent<Image>().sprite = playImage;
+            Time.timeScale = 0;
+            this.pause = true;
+        }else  if (this.turnActive && this.pause)
+        {
+            Debug.Log("Despausando");
+            Time.timeScale = 1;
+            this.pause = false;
+            gamePause.SetActive(false);
         }
+
+
+
     }
 
     void stopTurn() {
