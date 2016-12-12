@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour {
     public Text lifeText;
     public Waves[] waveList = new Waves[8];
 
+    public GameObject gameOver;
 
     [System.Serializable]
     private class WaveList
@@ -60,6 +62,11 @@ public class GameManager : MonoBehaviour {
             this.blocksDinheiro += waveList[this.actualTurn - 1].bounty;
             this.stopTurn();
         };
+
+        if (vidas <= 0) {
+            gameOver.SetActive(true);
+            Time.timeScale = 0;
+        }
     }
 
     int getActualTurn() {
@@ -98,6 +105,19 @@ public class GameManager : MonoBehaviour {
                 generating = false;
             }
 
+        }
+    }
+
+    public void clickMenu(string option) {
+        switch (option) {
+            case "exit":
+                Application.Quit();
+                break;
+            case "retry":
+                SceneManager.LoadScene("MainGame");
+                break;
+            default:
+                break;
         }
     }
 
