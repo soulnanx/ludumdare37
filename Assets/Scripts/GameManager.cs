@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour {
     public Text lifeText;
     public Waves[] waveList = new Waves[8];
 
+    private bool generating = false;
+
     // Use this for initialization
     void Start () {
         this.blocksDinheiro = 4;
@@ -57,7 +59,23 @@ public class GameManager : MonoBehaviour {
         waveList[5] = new Waves();
         waveList[5].type = new string[] { "car" };
         waveList[5].quantity = new int[] { 5 };
-        
+
+        waveList[6] = new Waves();
+        waveList[6].type = new string[] { "soldier", "doll" };
+        waveList[6].quantity = new int[] { 5, 2 };
+
+        waveList[7] = new Waves();
+        waveList[7].type = new string[] { "car" };
+        waveList[7].quantity = new int[] { 5 };
+
+        waveList[8] = new Waves();
+        waveList[8].type = new string[] { "soldier", "doll", "car" };
+        waveList[8].quantity = new int[] { 3, 2, 3 };
+
+        waveList[9] = new Waves();
+        waveList[9].type = new string[] { "soldier", "doll", "car" };
+        waveList[9].quantity = new int[] { 5, 4, 5 };
+
 
     }
 	
@@ -66,7 +84,7 @@ public class GameManager : MonoBehaviour {
         waves.text = "WAVE " + this.actualTurn;
         blocksText.text = ""+this.blocksDinheiro;
         lifeText.text = ""+this.vidas;
-        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && this.turnActive) {
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 && (this.turnActive && !this.generating)) {
             this.stopTurn();
         };
     }
@@ -97,10 +115,12 @@ public class GameManager : MonoBehaviour {
         {
             for (int q = 0; q < quantity[index]; q++)
             {
+                generating = true;
                 Debug.Log("oi");
                 spawn.spawnEnemy(getEnemyType(types[index]));
                 yield return new WaitForSeconds(3f);
                 Debug.Log("Tchau");
+                generating = false;
             }
 
         }
