@@ -7,9 +7,16 @@ public class Weapon : MonoBehaviour {
 
     private GameObject GM;
     public GameObject chao;
+    public float fireRate;
+
+    private float fire;
+
+    public GameObject tiro;
+
     // Use this for initialization
     void Start () {
         GM = GameObject.Find("GameController");
+        fire = fireRate;
     }
 	
 	// Update is called once per frame
@@ -32,6 +39,13 @@ public class Weapon : MonoBehaviour {
         {
             transform.GetChild(0).transform.LookAt(bestTarget.transform.position, transform.up);
         }
+        if (fire == 0 && bestTarget && closestEnemy.Length != 0) {
+            GameObject tiroGerado = Instantiate(tiro, new Vector3(this.transform.position.x , this.transform.position.y + 1,
+                                    this.transform.position.z), Quaternion.identity);
+            tiroGerado.GetComponent<Bullet>().target = bestTarget.transform;
+            fire = fireRate;
+        }
+        fire--;
 
     }
 
