@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour {
     public GameObject gameWin;
     public GameObject gamePause;
     public GameObject tutorial;
+    public GameObject  blocked;
 
     [System.Serializable]
     private class WaveList
@@ -64,6 +65,8 @@ public class GameManager : MonoBehaviour {
         WaveList wl = new WaveList();
         JsonUtility.FromJsonOverwrite(jsonFile.text, wl);
         waveList = wl.waves.ToArray();
+
+
 
     }
 	
@@ -156,6 +159,9 @@ public class GameManager : MonoBehaviour {
                 tutorial.SetActive(false);
                 room.showSpots();
                 break;
+            case "closeblocked":
+                blocked.SetActive(false);
+                break;
             default:
                 break;
         }
@@ -180,12 +186,14 @@ public class GameManager : MonoBehaviour {
             playPause.GetComponent<Image>().sprite = playImage;
             Time.timeScale = 0;
             this.pause = true;
-        }else  if (this.turnActive && this.pause)
+        } else if (this.turnActive && this.pause)
         {
             Debug.Log("Despausando");
             Time.timeScale = 1;
             this.pause = false;
             gamePause.SetActive(false);
+        } else if (!spawn.canStart()) {
+            blocked.SetActive(true);
         }
 
 

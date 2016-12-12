@@ -14,12 +14,24 @@ public class WeaponSpot : MonoBehaviour {
 
     private int horizontal;
     private int vertical;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    private void Awake()
+    {
+        for (int arrayNumber = 0; arrayNumber < 5; arrayNumber++)
+        {
+            for (int objId = 0; objId < 5; objId++)
+            {
+                chao.GetComponent<Room>().placeObject(0, objId, arrayNumber);
+            }
+        }
+    }
+
+    void Start () {
         ghost1 = GameObject.Find("amoebadoraGhost");
         ghost2 = GameObject.Find("basicGhost");
         ghost3 = GameObject.Find("basicGhost");
         GM = GameObject.Find("GameController");
+
     }
 	
 	// Update is called once per frame

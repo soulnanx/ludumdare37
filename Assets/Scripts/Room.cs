@@ -23,8 +23,10 @@ public class Room : MonoBehaviour {
             { 0,0,0,0,0}
         };
 
+
     // Use this for initialization
     void Start() {
+
         GM = GameObject.Find("GameController");
         for (int arrayNumber = 0; arrayNumber < 5; arrayNumber++)
         {
@@ -47,6 +49,7 @@ public class Room : MonoBehaviour {
 
     public void placeObject(int objectId, int horizontal, int vertical)
     {
+        Debug.Log(this.espacos[horizontal, vertical]);
         if (this.espacos[horizontal, vertical] == 0)
         {
             switch (objectId)
