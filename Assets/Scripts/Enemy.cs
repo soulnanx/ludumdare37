@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour {
 
     public int dano;
     public int bounty;
+    public int life;
 
 	// Use this for initialization
 	void Start () {
@@ -19,6 +20,11 @@ public class Enemy : MonoBehaviour {
 	void Update () {
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
         agent.destination = new Vector3(objetivo.transform.position.x, objetivo.transform.position.y, objetivo.transform.position.z + 10);
+        if (this.life <= 0) {
+
+            Object.Destroy(this.gameObject);
+        }
+
     }
 
 

@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        this.blocksDinheiro = 5;
+        this.blocksDinheiro = 4;
         this.vidas = 20;
         this.actualTurn = 0;
         this.turnActive = false;
