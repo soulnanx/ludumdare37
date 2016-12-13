@@ -2,31 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour {
     public bool tutorial = true;
     public bool musica = true;
     public bool efeitos = true;
-    
+
+    public GameObject musicaCheck;
+    public GameObject efeitoCheck;
+    public GameObject tutorialCheck;
+
 
     public void setTutorial(bool state) {
-        this.tutorial = state;
+        this.tutorial = !this.tutorial;
+        PlayerPrefs.SetInt("tutorial", this.tutorial ? 1: 0);
     }
 
     public void setMusica(bool state)
     {
-        this.musica = state;
+        this.musica = !this.musica;
+        PlayerPrefs.SetInt("musica", this.musica ? 1 : 0);
     }
 
     public void setEfeitos(bool state)
     {
-        this.efeitos = state;
+        this.efeitos = !this.efeitos;
+        PlayerPrefs.SetInt("efeitos", this.efeitos ? 1 : 0);
     }
 
 
     // Use this for initialization
     void Start () {
-		
+
 	}
 	
 	// Update is called once per frame

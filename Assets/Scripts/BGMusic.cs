@@ -7,6 +7,9 @@ public class BGMusic : MonoBehaviour {
 
     static bool AudioBegin = false;
     private static BGMusic instance = null;
+    private bool nojogo = false;
+
+    public AudioClip inGame;
 
     public static BGMusic Instance {
            get { return instance; }
@@ -21,6 +24,9 @@ public class BGMusic : MonoBehaviour {
         }
         if (!AudioBegin)
         {
+            PlayerPrefs.SetInt("tutorial", 1);
+            PlayerPrefs.SetInt("efeitos", 1);
+            PlayerPrefs.SetInt("musica", 1);
             GetComponent<AudioSource>().Play();
             DontDestroyOnLoad(gameObject);
             AudioBegin = true;
@@ -28,15 +34,19 @@ public class BGMusic : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-		
-	}
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        if (SceneManager.GetActiveScene().name == "MainGame")
+
+        if (SceneManager.GetActiveScene().name == "MainGame" && !nojogo)
         {
-            GetComponent<AudioSource>().Stop();
-            AudioBegin = false;
+            //GetComponent<AudioSource>().Stop();
+            GetComponent<AudioSource>().clip = inGame;
+            GetComponent<AudioSource>().Play();
+            nojogo = true;
+            //AudioBegin = false;
         }
     }
 }
